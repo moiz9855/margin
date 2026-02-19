@@ -1,30 +1,31 @@
-/* بہتر اور جدید ڈیزائن - قومی کی طرف سے */
+/* Custom Fonts and Variables */
 :root {
-    --primary-red: #8b0000;
-    --dark-red: #580000;
-    --glass-bg: rgba(255, 255, 255, 0.9);
-    --text-color: #2d3436;
+    --gold: #d4af37;
+    --rose-pink: #ff758c;
+    --dark-bg: #0f0c29;
+    --glass: rgba(255, 255, 255, 0.1);
 }
 
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    background: linear-gradient(135deg, #fce4ec 0%, #ffebee 50%, #d32f2f 100%);
-    color: var(--text-color);
+    font-family: 'Poppins', sans-serif;
+    /* Luxury Dark Gradient Background */
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    color: #fff;
     overflow-x: hidden;
     scroll-behavior: smooth;
     min-height: 200vh;
 }
 
-/* موبائل کے لیے ریسپونسیو کنٹینر */
 #container {
     position: relative;
     width: 100%;
-    height: 100dvh; /* Dynamic viewport height for mobile */
+    height: 100dvh;
     display: flex;
     justify-content: center;
     align-items: center;
+    perspective: 1000px;
 }
 
 #cake-canvas {
@@ -32,112 +33,95 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     cursor: pointer;
-    z-index: 5;
-    transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10;
+    filter: drop-shadow(0 0 20px rgba(255, 117, 140, 0.3));
+    transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* ہدایات کے لیے بہتر اسٹائل */
+/* Instructions ko button jaisa look diya hai */
 #instructions, #scroll-instruction {
     position: fixed;
-    bottom: 50px;
+    bottom: 8%;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 18px;
-    font-weight: 600;
-    color: white;
-    text-align: center;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(5px);
-    padding: 12px 25px;
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: var(--glass);
+    backdrop-filter: blur(15px);
+    padding: 15px 30px;
     border-radius: 50px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     z-index: 100;
-    width: fit-content;
-    white-space: nowrap;
-    border: 1px solid rgba(255,255,255,0.2);
+    text-align: center;
+    animation: floating 3s ease-in-out infinite;
 }
 
-/* خط (Letter) کا خوبصورت ڈیزائن */
+/* Letter Design - Luxury Glassmorphism */
 #letter {
     position: fixed;
-    width: 85%; /* موبائل کے لیے چوڑا */
-    max-width: 500px; /* ڈیسک ٹاپ کے لیے حد */
-    right: -120%; /* شروع میں اسکرین سے باہر */
+    width: 85%;
+    max-width: 450px;
+    right: -150%; /* Chupa hua */
     top: 50%;
-    transform: translateY(-50%);
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-    transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    max-height: 75vh;
+    transform: translateY(-50%) rotate(5deg);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(25px);
+    padding: 35px;
+    border-radius: 25px;
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.6);
+    transition: all 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+    max-height: 70vh;
     overflow-y: auto;
     z-index: 50;
-    border-left: 5px solid var(--primary-red);
 }
 
-/* جب لیٹر ظاہر ہو تو یہ کلاس شامل کریں (JS کے ذریعے) */
-#letter.active {
-    right: 5% !important;
+/* Jab Scroll ho tab letter aise dikhega */
+.show-letter #letter {
+    right: 5%;
+    transform: translateY(-50%) rotate(0deg);
 }
 
 #letter h1 {
-    color: var(--dark-red);
-    margin-top: 0;
-    font-family: 'Georgia', serif;
-    font-size: 1.8rem;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 10px;
+    font-family: 'Playfair Display', serif;
+    color: var(--rose-pink);
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(255, 117, 140, 0.5);
 }
 
 #letter p {
+    font-size: 1.05rem;
     line-height: 1.8;
-    font-size: 1.1rem;
-    color: #444;
+    color: #e0e0e0;
+    font-weight: 300;
 }
 
-/* اسکرول بار کو خوبصورت بنائیں */
-#letter::-webkit-scrollbar {
-    width: 6px;
-}
-#letter::-webkit-scrollbar-thumb {
-    background: #ccc;
-    border-radius: 10px;
+/* Floating Animation */
+@keyframes floating {
+    0% { transform: translateX(-50%) translateY(0px); }
+    50% { transform: translateX(-50%) translateY(-15px); }
+    100% { transform: translateX(-50%) translateY(0px); }
 }
 
-/* اینیمیشنز */
-@keyframes pulse {
-    0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.8; }
-    50% { transform: translateX(-50%) scale(1.05); opacity: 1; }
-}
-
-#instructions { animation: pulse 2s infinite; }
-
-/* میڈیا کیوری - بڑی اسکرینز کے لیے ایڈجسٹمنٹ */
-@media (min-width: 768px) {
+/* Mobile Friendly adjustments */
+@media (max-width: 600px) {
     #letter {
-        width: 35%;
-        right: -50%;
-        padding: 40px;
+        width: 80%;
+        padding: 25px;
+        right: -150%;
     }
-    #letter.active {
-        right: 10% !important;
+    
+    #letter h1 { font-size: 1.5rem; }
+    
+    #instructions {
+        width: 70%;
+        font-size: 14px;
     }
-    #instructions, #scroll-instruction {
-        font-size: 22px;
-    }
-}
-
-/* کنفیٹی لیئر */
-#confetti-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 10;
-    pointer-events: none;
 }
